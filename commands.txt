@@ -1,0 +1,15 @@
+go get -u github.com/go-chi/chi/v5
+
+go install github.com/air-verse/air@latest
+
+air init toml'da tmp'ler bin olarak değiştirildi ve exclude dir'e "docs","scripts" eklendi
+
+go get github.com/joho/godotenv 
+
+go get pq
+
+go migrate
+
+migrate create -seq -ext sql -dir ./cmd/migrate/migrations create_users 
+
+migrate -path=./cmd/migrate/migrations -database="postgres://admin:adminpassword@localhost/social?sslmode=disable" up / down
