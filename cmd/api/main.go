@@ -9,6 +9,8 @@ import (
 	"github.com/smutluuuu/go-social/internal/store"
 )
 
+const version = "0.0.1"
+
 func main() {
 	err := godotenv.Load(".env")
 	if err != nil {
