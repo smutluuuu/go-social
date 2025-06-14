@@ -14,7 +14,6 @@ func init() {
 }
 
 func writeJson(w http.ResponseWriter, status int, data any) error {
-
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 
@@ -38,4 +37,12 @@ func writeJSONError(w http.ResponseWriter, status int, message string) error {
 	}
 
 	return writeJson(w, status, &envelope{Error: message})
+}
+
+func (app *application) jsonResponse(w http.ResponseWriter, status int, data any) error {
+	type envelope struct {
+		Data any `json:"data"`
+	}
+
+	return writeJson(w, status, &envelope{Data: data})
 }
